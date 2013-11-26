@@ -14,7 +14,8 @@ Plugin to do "real time" updates using Websockets
 * Put the files from this repository in `$SNROOT/plugins/WebSockets/`
 * Run composer: `composer install`
 * Run the WebSockets daemon: `php push-server.php`
-* Add the following to `$SNROOT/config.php` (replace $SERVER with your hostname)
+* Add the following to `$SNROOT/config.php` (replace $SERVER with your hostname):
+
 ```php
- addPlugin('WebSockets', array('webserver' => '$SERVER', 'webport' => '8080));
- ```
+addPlugin('WebSockets', array('webserver' => '$SERVER', 'webport' => '8080'));
+```
