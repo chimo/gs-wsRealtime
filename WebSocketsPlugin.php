@@ -71,9 +71,9 @@ class WebSocketsPlugin extends RealtimePlugin
     {
         $scripts = parent::_getScripts();
 
-        $scripts[] = $this->path('when.js');
-        $scripts[] = $this->path('autobahn.min.js');
-        $scripts[] = $this->path('websockets.js');
+        $scripts[] = $this->path('/js/lib/when.js');
+        $scripts[] = $this->path('/js/lib/autobahn.min.js');
+        $scripts[] = $this->path('/js/websockets.js');
 
         return $scripts;
     }

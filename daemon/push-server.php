@@ -1,5 +1,5 @@
 <?php
-require getcwd() . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $loop   = React\EventLoop\Factory::create();
 $pusher = new wsRealtime\Pusher;
