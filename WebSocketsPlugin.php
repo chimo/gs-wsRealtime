@@ -130,6 +130,10 @@ class WebSocketsPlugin extends RealtimePlugin
         return implode('-', $path);
     }
 
+    function onGetValidDaemons(&$daemons) {
+        $daemons[] = '../plugins/WebSockets/daemon/push-server.php';
+    }
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Websockets',
