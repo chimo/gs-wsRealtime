@@ -9,6 +9,8 @@ Plugin to do "real time" updates using Websockets
 * [ZeroMQ](http://zeromq.org/)
 * [ZeroMQ-PHP](http://pecl.php.net/package/zmq)
 
+libevent is also recommended (see the [Ratchet documentation about "deployment"](http://socketo.me/docs/deploy))
+
 ## Setup
 
 * Put the files from this repository in `$SNROOT/plugins/WebSockets/`
