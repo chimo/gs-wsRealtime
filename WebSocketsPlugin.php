@@ -37,14 +37,18 @@ class WebSocketsPlugin extends RealtimePlugin
 {
     public $webserver     = null;
     public $webport       = null;
+    public $controlserver = null;
+    public $controlport   = null;
     protected $_socket    = null;
 
-    function __construct($webserver=null, $webport=4670)
+    function __construct($webserver=null, $webport=8080, $controlport=5555, $controlserver=null)
     {
         global $config;
 
         $this->webserver     = (empty($webserver)) ? $config['site']['server'] : $webserver;
         $this->webport       = $webport;
+        $this->controlserver = (empty($controlserver)) ? 'locahost' : $controlserver;
+        $this->controlport   = $controlport;
 		
         parent::__construct();
     }
@@ -55,7 +59,9 @@ class WebSocketsPlugin extends RealtimePlugin
     function initialize()
     {
         $settings = array('webserver',
-            'webport');
+            'webport',
+            'controlserver',
+            'controlport');
 
         foreach ($settings as $name) {
             $val = common_config('websockets', $name);
@@ -92,7 +98,7 @@ class WebSocketsPlugin extends RealtimePlugin
     {
         $context = new ZMQContext();
         $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
-        $socket->connect("tcp://localhost:5555"); // TODO: Make configurable
+        $socket->connect("tcp://" . $this->controlserver . ":" . $this->controlport);
 
         $this->_socket = $socket;
 
