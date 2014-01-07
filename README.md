@@ -19,5 +19,9 @@ libevent is also recommended (see the [Ratchet documentation about "deployment"]
 * Add the following to `$SNROOT/config.php` (replace $SERVER with your hostname):
 
 ```php
-addPlugin('WebSockets', array('webserver' => '$SERVER', 'webport' => '8080'));
+$config['websockets']['webserver'] = 'example.org';
+$config['websockets']['webport'] = '8080';
+$config['websockets']['controlserver'] = '127.0.0.1';
+$config['websockets']['controlport'] = '5555';
+addPlugin('WebSockets');
 ```
