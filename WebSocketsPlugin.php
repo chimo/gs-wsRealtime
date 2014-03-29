@@ -27,11 +27,12 @@
  * @link      http://github.com/chimo/wsRealtime
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET') && !defined('LACONICA') && !defined('GNUSOCIAL')) {
     exit(1);
 }
 
 require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
+require_once INSTALLDIR.'/plugins/Realtime/classes/Realtime_channel.php';
 
 class WebSocketsPlugin extends RealtimePlugin
 {
@@ -131,13 +132,13 @@ class WebSocketsPlugin extends RealtimePlugin
     }
 
     function onGetValidDaemons(&$daemons) {
-        $daemons[] = '../plugins/WebSockets/daemon/push-server.php';
+        $daemons[] = INSTALLDIR . '/plugins/WebSockets/daemon/push-server.php';
     }
 
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Websockets',
-                            'version' => STATUSNET_VERSION,
+                            'version' => defined(STATUSNET_VERSION) ? STATUSNET_VERSION : GNUSOCIAL_VERSION,
                             'author' => 'Stephane Berube',
                             'homepage' => 'http://github.com/chimo/wsRealtime',
                             'rawdescription' =>
