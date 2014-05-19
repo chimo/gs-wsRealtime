@@ -138,7 +138,7 @@ class WebSocketsPlugin extends RealtimePlugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Websockets',
-                            'version' => defined(STATUSNET_VERSION) ? STATUSNET_VERSION : GNUSOCIAL_VERSION,
+                            'version' => defined('STATUSNET_VERSION') ? STATUSNET_VERSION : GNUSOCIAL_VERSION,
                             'author' => 'Stephane Berube',
                             'homepage' => 'http://github.com/chimo/wsRealtime',
                             'rawdescription' =>
