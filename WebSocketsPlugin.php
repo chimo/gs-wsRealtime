@@ -132,7 +132,7 @@ class WebSocketsPlugin extends RealtimePlugin
     }
 
     function onGetValidDaemons(&$daemons) {
-        $daemons[] = INSTALLDIR . '/plugins/WebSockets/daemon/push-server.php';
+        $daemons[] = INSTALLDIR . '/plugins/WebSockets/daemon/pushserver.php';
     }
 
     function onPluginVersion(&$versions)
