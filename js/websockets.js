@@ -4,8 +4,9 @@
 
     window.wsRealtime = {
         init: function (server, port, timeline) {
-            var conn = new ab.Session(
-                    'ws://' + server + ':' + port,
+            var protocol = (document.location.protocol === 'https:') ? 'wss' : 'ws',
+                conn = new ab.Session(
+                    protocol + '://' + server + ':' + port,
                     function () { // Connect
                         conn.subscribe(timeline, function (undefined, data) {
                             RealtimeUpdate.receive(data);
