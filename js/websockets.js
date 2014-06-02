@@ -3,8 +3,10 @@
     /*global ab: false, RealtimeUpdate: false */
 
     window.wsRealtime = {
-        init: function (server, port, timeline) {
-            var protocol = (document.location.protocol === 'https:') ? 'wss' : 'ws',
+        init: function (server, httpPort, httpsPort, timeline) {
+            var isHTTPS = (document.location.protocol === 'https:'),
+                protocol = isHTTPS ? 'wss' : 'ws',
+                port = isHTTPS ? httpsPort : httpPort,
                 conn = new ab.Session(
                     protocol + '://' + server + ':' + port,
                     function () { // Connect
