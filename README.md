@@ -28,10 +28,10 @@ addPlugin('WebSockets');
 
 ## HTTPS / SSL / TLS
 
-Ratchet doesn't support SSL. One work-around is to use nginx to proxy those requests.
-Something based on the following nginx config might work.
-Replace $SERVER with your SN / GS hostname.
-Make sure to point to your SSL cert/key.
+Ratchet doesn't support SSL. One work-around is to use nginx to proxy those requests.  
+Something based on the following nginx config might work.  
+Replace $SERVER with your SN / GS hostname.  
+Make sure to point to your SSL cert/key.  
 
 ```
 upstream websocket {
