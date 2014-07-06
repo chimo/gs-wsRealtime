@@ -1,25 +1,4 @@
 <?php
-
-// We need to redefine the autoloader using spl_autoload_register
-// Otherwise, composer will overwrite it with its own and break everything
-// This should probably be changed in GnuSocial itself.
-// From $SNROOT/lib/framework.php
-spl_autoload_register(function ($cls)
-{
-    if (file_exists(INSTALLDIR.'/classes/' . $cls . '.php')) {
-        require_once(INSTALLDIR.'/classes/' . $cls . '.php');
-    } else if (file_exists(INSTALLDIR.'/lib/' . strtolower($cls) . '.php')) {
-        require_once(INSTALLDIR.'/lib/' . strtolower($cls) . '.php');
-    } else if (mb_substr($cls, -6) == 'Action' &&
-               file_exists(INSTALLDIR.'/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php')) {
-        require_once(INSTALLDIR.'/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php');
-    } else if ($cls == 'OAuthRequest') {
-        require_once('OAuth.php');
-    } else {
-        Event::handle('Autoload', array(&$cls));
-    }
-}, true, true);
-
 // From composer
 require __DIR__ . '/../vendor/autoload.php';
 
