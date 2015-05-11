@@ -27,7 +27,7 @@
  * @link      http://github.com/chimo/wsRealtime
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA') && !defined('GNUSOCIAL')) {
+if (!defined('GNUSOCIAL')) {
     exit(1);
 }
 
