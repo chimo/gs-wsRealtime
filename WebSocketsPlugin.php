@@ -50,7 +50,7 @@ class WebSocketsPlugin extends RealtimePlugin
         $this->sslport       = $webport; // SSL port defaults to $webport
         $this->controlserver = (empty($controlserver)) ? 'locahost' : $controlserver;
         $this->controlport   = $controlport;
-		
+
         parent::__construct();
     }
 
@@ -91,10 +91,10 @@ class WebSocketsPlugin extends RealtimePlugin
     {
         $script = parent::_updateInitialize($timeline, $user_id);
         $ours = sprintf("wsRealtime.init(%s, %s, %s, %s);",
-        				json_encode($this->webserver),
-        				json_encode($this->webport),
-        				json_encode($this->sslport),
-        				json_encode($timeline));
+                        json_encode($this->webserver),
+                        json_encode($this->webport),
+                        json_encode($this->sslport),
+                        json_encode($timeline));
         return $script . " " . $ours;
     }
 
@@ -115,7 +115,7 @@ class WebSocketsPlugin extends RealtimePlugin
         $message = json_encode($message);
         $message = addslashes($message);
 
-        $this->_socket->send($message); 
+        $this->_socket->send($message);
     }
 
     function _disconnect()
