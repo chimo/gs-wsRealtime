@@ -32,7 +32,6 @@ if (!defined('STATUSNET') && !defined('LACONICA') && !defined('GNUSOCIAL')) {
 }
 
 require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
-require_once INSTALLDIR.'/plugins/Realtime/classes/Realtime_channel.php';
 
 class WebSocketsPlugin extends RealtimePlugin
 {
@@ -133,6 +132,23 @@ class WebSocketsPlugin extends RealtimePlugin
             array_unshift($path, $this->channelbase);
         } */
         return implode('-', $path);
+    }
+
+    function onAutoload($cls) {
+        $realtime_dir = dirname(__FILE__) . '/../Realtime';
+
+        switch($cls)
+        {
+            case 'KeepalivechannelAction':
+            case 'ClosechannelAction':
+                require_once($realtime_dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php');
+                return false;
+            case 'Realtime_channel':
+                require_once($realtime_dir . '/classes/' . $cls . '.php');
+                return false;
+            default:
+                return true;
+        }
     }
 
     function onGetValidDaemons(&$daemons) {
