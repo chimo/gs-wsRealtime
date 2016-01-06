@@ -155,7 +155,7 @@ class WebSocketsPlugin extends RealtimePlugin
         $daemons[] = INSTALLDIR . '/plugins/WebSockets/daemon/pushserver.php';
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Websockets',
                             'version' => defined('STATUSNET_VERSION') ? STATUSNET_VERSION : GNUSOCIAL_VERSION,
