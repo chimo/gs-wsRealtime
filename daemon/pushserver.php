@@ -2,8 +2,18 @@
 // From composer
 require __DIR__ . '/../vendor/autoload.php';
 
-// From $SNROOT/plugins/TwitterBridge/twitterstatusfetcher.php
-define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
+// GNU social INSTALLDIR if we're in /plugins/WebSockets/daemon
+$dir = realpath(dirname(__FILE__) . '/../../..');
+
+// GNU social INSTALLDIR if we're in /local/plugins/WebSockets/daemon
+// NOTE: False positive if the root folder of the GS install is
+//       called 'local', I guess
+if (preg_match('/\/local$/', $dir) === 1) {
+    $dir = realpath($dir . '/..');
+}
+
+define('INSTALLDIR', $dir);
+
 require_once INSTALLDIR . '/scripts/commandline.inc';
 require_once INSTALLDIR . '/lib/common.php';
 require_once INSTALLDIR . '/lib/daemon.php';
