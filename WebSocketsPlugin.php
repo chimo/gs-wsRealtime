@@ -109,7 +109,7 @@ class WebSocketsPlugin extends RealtimePlugin
     }
 
     function onAutoload($cls) {
-        $realtime_dir = dirname(__FILE__) . '/../Realtime';
+        $realtime_dir = INSTALLDIR . '/plugins/Realtime';
 
         switch($cls)
         {
