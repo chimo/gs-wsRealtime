@@ -7,20 +7,22 @@ require_once INSTALLDIR . '/plugins/Realtime/RealtimePlugin.php';
 
 class WebSocketsPlugin extends RealtimePlugin
 {
-    const VERSION = '0.0.1';
+    const VERSION = '0.1.0';
 
     public $webserver     = null;
     public $webport       = null;
+    public $path          = null;
     public $controlserver = null;
     public $controlport   = null;
     protected $_socket    = null;
 
-    function __construct($webserver=null, $webport=8080, $sslport=null, $controlport=5555, $controlserver=null)
+    function __construct($webserver=null, $webport=8080, $path='', $sslport=null, $controlport=5555, $controlserver=null)
     {
         global $config;
 
         $this->webserver     = (empty($webserver)) ? $config['site']['server'] : $webserver;
         $this->webport       = $webport;
+        $this->path          = $path;
         $this->sslport       = $webport; // SSL port defaults to $webport
         $this->controlserver = (empty($controlserver)) ? 'locahost' : $controlserver;
         $this->controlport   = $controlport;
@@ -36,6 +38,7 @@ class WebSocketsPlugin extends RealtimePlugin
         $settings = array(
             'webserver',
             'webport',
+            'path',
             'sslport',
             'controlserver',
             'controlport'
@@ -64,9 +67,10 @@ class WebSocketsPlugin extends RealtimePlugin
     function _updateInitialize($timeline, $user_id)
     {
         $script = parent::_updateInitialize($timeline, $user_id);
-        $ours = sprintf("wsRealtime.init(%s, %s, %s, %s);",
+        $ours = sprintf("wsRealtime.init(%s, %s, %s, %s, %s);",
                         json_encode($this->webserver),
                         json_encode($this->webport),
+                        json_encode($this->path),
                         json_encode($this->sslport),
                         json_encode($timeline));
         return $script . " " . $ours;
